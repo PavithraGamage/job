@@ -11,12 +11,14 @@ $db = db_con();
 
 <div class="container-fluid search">
     <div class="container search_bar">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control search_field" placeholder="Search Items" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn search_btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <form action="search.php" method ="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control search_field" placeholder="Search Items" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn search_btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
