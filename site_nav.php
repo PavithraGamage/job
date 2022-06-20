@@ -12,7 +12,7 @@
     <link href="assets/css/styles.css" rel="stylesheet">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
+
 </head>
 
 <body>
@@ -27,11 +27,11 @@
                     </a>
                 </div>
                 <div class="col nav_box">
-                    <a href="about.php" class="links">About</a>
-                    <a href="contact.php" class="links">Contact</a>
+                    <a href="about.php" class="links">All Needs</a>
                 </div>
                 <div class="col-4 button_box">
-                    <button type="button" class="main_btn">ALL ADS</button>
+                    <a href="login.php" class="links" style="margin-top: 14px; margin-right: 20px;">Login <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                    <button type="button" class="main_btn">POST YOUR NEEDS</button>
                 </div>
             </div>
         </div>

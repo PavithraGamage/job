@@ -1,13 +1,35 @@
 <?php
 
-include "site_nav.php"
+include "site_nav.php";
+include "system/functions.php";
+
+// extract
+extract($_GET);
+
+// db connection
+$db = db_con();
 
 ?>
 
 <div class="container cat_container">
-    <h2 class="pro_title">Submit a proposal for <b>Need Apple Mac Box Air 12 Pcs</b></h2>
+    <?php
+
+    $sql = "SELECT job_title FROM `jobs` WHERE job_id = $job_id;";
+
+    $result = $db->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+    ?>
+        <h2 class="pro_title">Submit a proposal for <b><?php echo $row['job_title'] ?></b></h2>
+    <?php
+
+    }
+    ?>
+
     <hr>
-    <form>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
         <h4 class="pro_personal_details">Personal Details</h4>
         <div class="row">
             <div class="col-4 pro_inputs">
@@ -74,7 +96,13 @@ include "site_nav.php"
             </div>
         </div>
 
-        <h4 class="pro_personal_details">Upload Proposal</h4>
+        <h4 class="pro_personal_details">Proposal Details</h4>
+        <div class="col-12 pro_inputs">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1" class="pro_labels">Cover Letter</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+            </div>
+        </div>
         <div class="mb-3">
             <input class="form-control" type="file" id="formFile">
         </div>
