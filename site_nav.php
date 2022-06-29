@@ -12,7 +12,8 @@
     <link href="assets/css/styles.css" rel="stylesheet">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
                 <div class="col-4 logo_box">
                     <i class="fa-solid fa-globe"></i>
                     <a href="index.php" class="site_link">
-                        <h4 class="brand_name">JOB BOARD</h4>
+                        <h4 class="brand_name">Needs.Lk</h4>
                     </a>
                 </div>
                 <div class="col nav_box">

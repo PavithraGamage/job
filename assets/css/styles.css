@@ -189,37 +189,43 @@
 
 }
 
-.general_btn{
+.general_btn {
     color: white;
     background-color: #159777;
 }
 
-.general_btn:hover{
+.general_btn:hover {
     color: black;
     background-color: gold;
 }
 
-.view_cat{
+.view_cat {
     padding-bottom: 40px;
 }
 
-.pro_title{
+.pro_title {
     margin-bottom: 30px;
 }
 
-.pro_personal_details{
-    margin-bottom: 20px;
-}
-.pro_inputs{
+.pro_personal_details {
     margin-bottom: 20px;
 }
 
-.pro_labels{
+.pro_inputs {
+    margin-bottom: 20px;
+}
+
+.pro_labels {
     margin-bottom: 8px;
 }
 
-.login_container{
+.login_container {
     width: 600px;
 }
 
+.pag {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
+}

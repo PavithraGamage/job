@@ -24,11 +24,11 @@ $db = db_con();
             $row = $result->fetch_assoc();
 
         ?>
-                <div class="col-5">
-                    <h2><i class="<?php echo $row['cat_icon'] ?> cat_icon"></i> <?php echo $row['cat_name'] ?></h2>
-                </div>
+            <div class="col-5">
+                <h2><i class="<?php echo $row['cat_icon'] ?> cat_icon"></i> <?php echo $row['cat_name'] ?></h2>
+            </div>
         <?php
-            
+
         }
 
         ?>
@@ -65,49 +65,35 @@ $db = db_con();
                 </label>
             </div>
         </div>
-        <div class="col-10 cat_list">
-            <?php
+        <div class="col-10 cat_list" id="cat_list">
 
-            $sql = "SELECT * FROM jobs WHERE job_status = 1 AND cat_id = $cat_id;";
-
-            $result = $db->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-
-            ?>
-                    <div class="card mb-3 cat_card" style="max-width: 100%;">
-                        <div class="row g-0">
-                            <div class="col-md-3">
-                                <img src="assets/images/<?php echo $row['job_image'] ?>" class="img-fluid rounded-start cat_card_image" alt="...">
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo ucfirst($row['job_title'])  ?></h5>
-                                    <p class="card-text"><?php echo limit_text($row['job_description'], 30)    ?></p>
-                                    <p class="card-text"><small class="text-muted"><b>End Date: <?php echo $row['job_end_date'] ?></b></small></p>
-                                    <p class="card-text"><small class="text-muted">Colombo, Laptops, End Date <?php echo $row['job_end_date'] ?></small></p>
-                                    <form action="view.php" method="get">
-                                        <input type="hidden" name="job_id" value="<?php echo $row['job_id'] ?>">
-                                        <button type="submit" class="btn general_btn">Success</button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-            <?php
-                }
-            }else{
-                echo "<h2 style='color:red'>Currently Category Is Empty 🥲</h2>";
-            }
-            ?>
         </div>
     </div>
 
 </div>
 
+<script>  
+ $(document).ready(function(){  
+    
+      load_data();  
+
+      function load_data(page)  
+      {  
+           $.ajax({  
+                url:"needs_list.php",  
+                method:"POST",  
+                data:{page:page},  
+                success:function(data){  
+                     $('#cat_list').html(data);  
+                }  
+           })  
+      }  
+      $(document).on('click', '.pagination_link', function(){  
+           var page = $(this).attr("id");  
+           load_data(page);  
+      });  
+ });  
+ </script> 
 
 
 <?php

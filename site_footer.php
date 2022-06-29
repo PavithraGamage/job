@@ -6,7 +6,7 @@
                     <i class="fa-solid fa-globe"></i>
                 </div>
                 <div>
-                    <h4 class="brand_name">JOB BOARD</h4>
+                    <h4 class="brand_name">Needs.Lk</h4>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. </p>
                     <a href="https://www.gixez.com/" class="fot_link" target="blank">Powered by 🅶🅸🆇🅴🆉</a>
                 </div>

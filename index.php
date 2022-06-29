@@ -23,7 +23,7 @@ $db = db_con();
 </div>
 
 <div class="container">
-    <h5 class="cat_title">Browse items by category</h5>
+    <h5 class="cat_title">Browse needs by category</h5>
     <div class="row">
         <!-- cat box start -->
         <?php
