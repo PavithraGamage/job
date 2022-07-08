@@ -1,5 +1,8 @@
 <?php
 
+// includes
+include "../system/functions.php";
+
 // extract
 extract($_GET);
 
@@ -20,7 +23,7 @@ if (isset($_POST["page"])) {
 
 $start_from = ($page - 1)*$record_per_page;
 
-$sql = "SELECT * FROM jobs WHERE job_status = 1 AND cat_id = $cat_id ORDER BY job_created_date ASC LIMIT $start_from, $record_per_page ;";
+$sql = "SELECT * FROM jobs WHERE job_status = 1 AND cat_id = 1 ORDER BY job_created_date ASC LIMIT $start_from, $record_per_page ;";
 
 $result = $db->query($sql);
 

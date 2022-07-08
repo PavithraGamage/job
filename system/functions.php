@@ -19,9 +19,6 @@ function db_con()
     return $con;
 }
 
-// end database connection-------------------------------
-
-
 // word limit--------------------------------------------
 
 function limit_text($text, $limit) {
@@ -33,4 +30,16 @@ function limit_text($text, $limit) {
     return $text;
 }
 
-// end word limit----------------------------------------
+// clean form input data --------------------------------
+
+function data_clean($data = null)
+{
+
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+
+    return $data;
+}
+
+
