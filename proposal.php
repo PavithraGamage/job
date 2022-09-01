@@ -109,18 +109,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && @$action == 'submit') {
         $messages['province'] = "Province not valid";
     }
 
-    // insert data to db
+    // file upload
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        $messages['attachment'] = "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        $messages['attachment'] =  "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    if ($imageFileType != "pdf") {
+        $messages['attachment'] = "Sorry, only PDF files are allowed.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        $messages['attachment'] =  "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            $attachment_susses = "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+        } else {
+            $messages['attachment'] = "Sorry, there was an error uploading your file.";
+        }
+    }
+
+    // insert data to db
     if (empty($messages)) {
 
         // sb query
         $sql = "";
 
         // run query
-        $db->query($sql);
+        // $db->query($sql);
 
         // success message
-        $messages['success'] = "Proposal submit";
+        $messages['success'] = "Proposal successfully submit";
 
         // form clean
         $first_name = null;
@@ -164,55 +199,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && @$action == 'submit') {
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">First Name</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="first_name" value="<?php echo @$first_name ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="John" name="first_name" value="<?php echo @$first_name ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['first_name'] ?></div>
                 </div>
             </div>
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">Last Name</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="last_name" value="<?php echo @$last_name ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Doe" name="last_name" value="<?php echo @$last_name ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['last_name'] ?></div>
                 </div>
             </div>
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">Contact Number</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="contact_number" value="<?php echo @$contact_number ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="+94 75 700 3662" name="contact_number" value="<?php echo @$contact_number ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['contact_number'] ?></div>
                 </div>
             </div>
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">Email</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?php echo @$email ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="abc@gmail.com" name="email" value="<?php echo @$email ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['email'] ?></div>
                 </div>
             </div>
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">Address Line 1</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="addr_line_1" value="<?php echo @$addr_line_1 ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your Address Line 1" name="addr_line_1" value="<?php echo @$addr_line_1 ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['addr_line_1'] ?></div>
                 </div>
             </div>
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">Address Line 2</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="addr_line_2" value="<?php echo @$addr_line_2 ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your Address Line 1" name="addr_line_2" value="<?php echo @$addr_line_2 ?>">
                 </div>
             </div>
             <div class="col-4 pro_inputs">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">City</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="city" value="<?php echo @$city ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your City" name="city" value="<?php echo @$city ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['city'] ?></div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
                     <label for="inputEmail4" class="pro_labels">Postal Code</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Email" name="postal_code" value="<?php echo @$postal_code ?>">
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your Postal Code" name="postal_code" value="<?php echo @$postal_code ?>">
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['postal_code'] ?></div>
                 </div>
             </div>
@@ -222,11 +257,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && @$action == 'submit') {
                     <select id="inputState" class="form-control" name="province" value="<?php echo @$province ?>">
                         <option value="">Choose...</option>
                         <option value="1">Western</option>
-                        <option>Western</option>
-                        <option>Western</option>
-                        <option>Western</option>
-                        <option>Western</option>
-                        <option>Western</option>
+                        <option value="1">Western</option>
+                        <option value="1">Western</option>
+                        <option value="1">Western</option>
+                        <option value="1">Western</option>
+                        <option value="1">Western</option>
                     </select>
                     <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['province'] ?></div>
                 </div>
@@ -242,14 +277,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && @$action == 'submit') {
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="pro_labels">Attachment</label>
-            <input class="form-control" type="file" id="formFile" name="attachment">
+            <input class="form-control" type="file" id="formFile" name="fileToUpload">
             <div style="margin-top: 5px; color: red; font-weight:700"><?php echo @$messages['attachment'] ?></div>
         </div>
         <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
         <button type="submit" class="btn general_btn" style="margin-top: 25px;" name="action" value="submit">Submit Proposal</button>
     </form>
+    <div style="margin-top: 15px; color: green; font-weight:700"><?php echo @$messages['success'] ?></div>
 </div>
-
 
 <?php
 
